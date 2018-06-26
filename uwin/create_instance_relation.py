@@ -103,7 +103,7 @@ def handle_relation(method, left_instance_id, right_instance_id):
 	r = requests.post(url=url, json=data, headers=HEADERS)
 
 	if method == 'put':
-		url = 'http://{0}/object/{1}/instance/{3}'.format(EASYOPS_CMDB_HOST, LEFT_OBJECT_ID_IPMI, left_instance_id)
+		url = 'http://{0}/object/{1}/instance/{2}'.format(EASYOPS_CMDB_HOST, LEFT_OBJECT_ID_IPMI, left_instance_id)
 		data = {
 			RIGHT_OBJECT_ID_HOST: {
 				"instanceId": right_instance_id
@@ -175,6 +175,8 @@ if __name__ == '__main__':
 				if ipmi_host[0].get(HOST_DaiWai_IP_ZiDuan_id) == ipmi_ip:
 					pass
 				else:
+					# 必须写两次，put 会先删除已有实例。第二次是创建。
+					check_success = handle_relation('put', ipmi['instanceId'], host_instances_dict[ipmi_ip])
 					check_success = handle_relation('put', ipmi['instanceId'], host_instances_dict[ipmi_ip])
 					if check_success:
 						print("Update the  relation of {} success.".format(ipmi_ip))

@@ -14,8 +14,8 @@
       <file leaf-file-name="create_instance_relation.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="160" column="36" lean-forward="true" selection-start-line="160" selection-start-column="36" selection-end-line="160" selection-end-column="36" />
+            <state relative-caret-position="154">
+              <caret line="163" column="33" lean-forward="true" selection-start-line="163" selection-start-column="33" selection-end-line="163" selection-end-column="33" />
               <folding>
                 <element signature="e#23#34#0" expanded="true" />
                 <element signature="e#543#943#0" />
@@ -186,7 +186,7 @@
       <window_info anchor="bottom" id="TODO" order="10" weight="0.32962447" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50073856" side_tool="true" weight="0.3391892" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32848486" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32848486" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.63272727" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -400,8 +400,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="160" column="36" lean-forward="true" selection-start-line="160" selection-start-column="36" selection-end-line="160" selection-end-column="36" />
+        <state relative-caret-position="154">
+          <caret line="163" column="33" lean-forward="true" selection-start-line="163" selection-start-column="33" selection-end-line="163" selection-end-column="33" />
           <folding>
             <element signature="e#23#34#0" expanded="true" />
             <element signature="e#543#943#0" />
