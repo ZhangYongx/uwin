@@ -30,6 +30,7 @@ RELATION_ID = "IPMISUMMARY_HOST_IPMISUMMARY_HOST"
 LEFT_OBJECT_ID_IPMI = "IPMISUMMARY"
 RIGHT_OBJECT_ID_HOST = "HOST"
 
+
 # 两个资源模型中带外 IP 的字段 ID
 IPMI_DaiWai_IP_ZiDuan_id = 'name'
 HOST_DaiWai_IP_ZiDuan_id = 'adminip'  # 测试环境
@@ -67,14 +68,6 @@ def get_all_instance(object_id, params=None, pagesize=3000):
 		params = {}
 	params['page'] = 1
 	params['page_size'] = pagesize
-	# # 指定IPMI、HOST 模型的过虑字段
-	# params['fields'] = {
-	# 	# IPMI 需要 instance_id, name, HOST 字段
-	# 	'instanceId': 1,
-	# 	IPMI_DaiWai_IP_ZiDuan_id: 1,
-	# 	# HOST 需要 instance_id, adminip 字段
-	# 	HOST_DaiWai_IP_ZiDuan_id: 1
-	# }
 
 	try:
 		r_json = cmdb_request("POST", url, params)
@@ -102,16 +95,15 @@ def handle_relation(method, left_instance_id, right_instance_id):
 	:param right_instance_id:
 	:return:  bool
 	'''
-	if method == 'post':
-		url = "http://{0}/object_relation/{1}/relation_instance".format(EASYOPS_CMDB_HOST, RELATION_ID)
-		data = {
-			"left_instance_id": left_instance_id,
-			"right_instance_id": right_instance_id
-		}
-		r = requests.post(url=url, json=data, headers=HEADERS)
+	url = 'http://{0}/object_relation/{1}/relation_instance'.format(EASYOPS_CMDB_HOST, RELATION_ID)
+	data = {
+		"left_instance_id": left_instance_id,
+		"right_instance_id": right_instance_id
+	}
+	r = requests.post(url=url, json=data, headers=HEADERS)
 
 	if method == 'put':
-		url = "http://{0}/object/{1}/instance/{3}".format(EASYOPS_CMDB_HOST, LEFT_OBJECT_ID_IPMI, left_instance_id)
+		url = 'http://{0}/object/{1}/instance/{3}'.format(EASYOPS_CMDB_HOST, LEFT_OBJECT_ID_IPMI, left_instance_id)
 		data = {
 			RIGHT_OBJECT_ID_HOST: {
 				"instanceId": right_instance_id
@@ -124,12 +116,10 @@ def handle_relation(method, left_instance_id, right_instance_id):
 		# print("Creating relation between {0} and {1} \033[1;32m Success \033[0m!".format(
 		# 	left_instance_id, right_instance_id))
 	else:
-		return False
 		print("Error: {}".format(r.status_code))
+		return False
 		# print("Creating relation between {0} and {1} \033[1;31m Failed \033[0m!".format(
 		# 	left_instance_id, right_instance_id))
-
-
 
 
 if __name__ == '__main__':
@@ -137,7 +127,7 @@ if __name__ == '__main__':
 		'fields': {
 			'instanceId': 1,
 			IPMI_DaiWai_IP_ZiDuan_id: 1,  # ip 字段
-			RIGHT_OBJECT_ID_HOST: 1  # 关系别名字段。一般等于 对端ID
+			RIGHT_OBJECT_ID_HOST: 1  # 对端的关系ID
 		}
 	}
 	params_host = {
@@ -146,28 +136,47 @@ if __name__ == '__main__':
 			HOST_DaiWai_IP_ZiDuan_id: 1
 		}
 	}
-	# 生成形如 {ip: instanceId} 的字典
 	ipmi_instances_list = get_all_instance(LEFT_OBJECT_ID_IPMI, params=params_ipmi)
+	host_instances_list = get_all_instance(RIGHT_OBJECT_ID_HOST, params=params_host)
+
+	# 过虑出两个模型中共有的 IP
+	# 过虑字段，生成形如 {ip: instanceId} 的字典
 	ipmi_instances_dict = {}
 	for i in ipmi_instances_list:
 		ipmi_instances_dict[i[IPMI_DaiWai_IP_ZiDuan_id]] = i['instanceId']
-
-	host_instances_list = get_all_instance(RIGHT_OBJECT_ID_HOST, params=params_host)
 	host_instances_dict = {}
 	for i in host_instances_list:
 		if i[HOST_DaiWai_IP_ZiDuan_id]:
 			host_instances_dict[i[HOST_DaiWai_IP_ZiDuan_id]] = i['instanceId']
-
-	# 以两个模型中的 共有IP 为基准来创立关系
-	common_ips = set(ipmi_instances_dict) & set(host_instances_dict)
-
+	# 以两个模型中的共有IP 为基准来创立关系
+	common_ips = list(set(ipmi_instances_dict) & set(host_instances_dict))
 	# 输出 IPMI - HOST 的差集IP
-	in_ipmi_notin_host = set(ipmi_instances_dict) - set(host_instances_dict)
+	in_ipmi_notin_host = list(set(ipmi_instances_dict) - set(host_instances_dict))
 	if in_ipmi_notin_host:
-		print(u"The List of IP below is in {0}, but \033[1;31m not in {1} \033[0m.".format(
+		print(u"The List of IP below is in {0}, but \033[1;31m not in {1} \033[0m. Those NOT handle".format(
 			LEFT_OBJECT_ID_IPMI, RIGHT_OBJECT_ID_HOST))
-		print("\n{}".format(list(in_ipmi_notin_host)))
+		print("\n{}".format(in_ipmi_notin_host))
 
 	print("\nStart to create relations.........")
-	for common_ip in common_ips:
-		create_relation(ipmi_instances_dict[common_ip], host_instances_dict[common_ip])
+	for ipmi in ipmi_instances_list:
+		ipmi_ip = ipmi[IPMI_DaiWai_IP_ZiDuan_id]
+		ipmi_host = ipmi.get(RIGHT_OBJECT_ID_HOST)
+		if ipmi_ip in common_ips:
+			# IPMI['HOST'] 为空，创建关系
+			if not ipmi_host:
+				check_success = handle_relation('post', ipmi['instanceId'], host_instances_dict[ipmi_ip])
+				if check_success:
+					print("Create the relation of {} success.".format(ipmi_ip))
+				else:
+					print("Create the relation of \033[1;31m Failed \033[0m!.".format(ipmi_ip))
+
+			# IPMI['HOST'] 已存在，检查关系是否正确。如果正确匹配，pass，否则更新关系。
+			else:
+				if ipmi_host[0].get(HOST_DaiWai_IP_ZiDuan_id) == ipmi_ip:
+					pass
+				else:
+					check_success = handle_relation('put', ipmi['instanceId'], host_instances_dict[ipmi_ip])
+					if check_success:
+						print("Update the  relation of {} success.".format(ipmi_ip))
+					else:
+						print("Update the relation of \033[1;31m Failed \033[0m!.".format(ipmi_ip))
