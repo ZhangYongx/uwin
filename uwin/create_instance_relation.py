@@ -154,8 +154,9 @@ if __name__ == '__main__':
 	# 输出 IPMI - HOST 的差集IP
 	in_ipmi_notin_host = list(set(ipmi_instances_dict) - set(host_instances_dict))
 	if in_ipmi_notin_host:
-		print(u"The List of IP below is in {0}, but \033[1;31m not in {1} \033[0m. Those NOT handle".format(
+		print(u"The List of IP below is in {0}, but \033[1;31m not in {1} \033[0m.".format(
 			LEFT_OBJECT_ID_IPMI, RIGHT_OBJECT_ID_HOST))
+		print("Those NOT handle")
 		print("\n{}".format(in_ipmi_notin_host))
 
 	print("\n----------------------------------------------")

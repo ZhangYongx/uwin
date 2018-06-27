@@ -11,26 +11,9 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="create_instance_relation.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1860">
-              <caret line="185" column="75" selection-start-line="185" selection-start-column="75" selection-end-line="185" selection-end-column="75" />
-              <folding>
-                <element signature="e#543#943#0" />
-                <element signature="e#2325#2401#1" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pydevd.py" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="1067" selection-start-line="1067" selection-end-line="1067" />
-            </state>
-          </provider>
+      <file leaf-file-name="Tornado.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tornado.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -61,21 +44,19 @@
         <option value="$PROJECT_DIR$/Multithreading.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/create_instance_relation.py" />
+        <option value="$PROJECT_DIR$/Tornado.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="608" />
-    <option name="y" value="29" />
-    <option name="width" value="937" />
-    <option name="height" value="816" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -87,6 +68,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -185,31 +167,20 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10923185" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.32962447" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50073856" side_tool="true" weight="0.3391892" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32848486" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32962447" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.63272727" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.63282335" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49926144" weight="0.37413073" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.34666666" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49926144" weight="0.37333333" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.34770516" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16921398" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="10" weight="0.32962447" />
-      <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32962447" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.34770516" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49926144" weight="0.37413073" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50073856" side_tool="true" weight="0.3391892" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.63282335" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -285,17 +256,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/create_instance_relation.py</url>
-          <line>176</line>
+          <line>177</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/create_instance_relation.py</url>
-          <line>164</line>
+          <line>165</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/create_instance_relation.py</url>
-          <line>180</line>
+          <line>181</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
@@ -312,12 +283,22 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2175">
+          <caret line="145" column="21" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16005">
+          <caret line="1067" selection-start-line="1067" selection-end-line="1067" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="11" selection-start-line="11" selection-end-line="16" selection-end-column="1" />
-          <folding>
-            <element signature="e#543#943#0" />
-            <element signature="e#2325#2401#1" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -332,23 +313,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#543#943#0" />
-            <element signature="e#2325#2401#1" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="11" selection-start-line="11" selection-end-line="16" selection-end-column="1" />
-          <folding>
-            <element signature="e#543#943#0" />
-            <element signature="e#2325#2401#1" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -363,22 +333,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#543#943#0" />
-            <element signature="e#2325#2401#1" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Multithreading.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -392,6 +352,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="145" column="21" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -399,16 +366,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/create_instance_relation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1860">
-          <caret line="185" column="75" selection-start-line="185" selection-start-column="75" selection-end-line="185" selection-end-column="75" />
-          <folding>
-            <element signature="e#543#943#0" />
-            <element signature="e#2325#2401#1" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Tornado.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
