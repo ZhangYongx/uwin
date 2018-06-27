@@ -1,9 +1,8 @@
 # _*_coding: utf-8_*_
 '''
 自动创建 IPMI 与 HOST 实例之间的关系。
-前提条件是 HOST 实例中，已存在对应的 IPMI-带外IP
+前提条件：用户自己维护 HOST 与 IPMI 两个模型中的带外IP
 '''
-import json
 import requests
 
 
@@ -131,6 +130,9 @@ if __name__ == '__main__':
 		}
 	}
 	params_host = {
+		'query': {
+			HOST_DaiWai_IP_ZiDuan_id: {"$exists": True}
+		},
 		'fields': {
 			'instanceId': 1,
 			HOST_DaiWai_IP_ZiDuan_id: 1
@@ -146,8 +148,7 @@ if __name__ == '__main__':
 		ipmi_instances_dict[i[IPMI_DaiWai_IP_ZiDuan_id]] = i['instanceId']
 	host_instances_dict = {}
 	for i in host_instances_list:
-		if i[HOST_DaiWai_IP_ZiDuan_id]:
-			host_instances_dict[i[HOST_DaiWai_IP_ZiDuan_id]] = i['instanceId']
+		host_instances_dict[i[HOST_DaiWai_IP_ZiDuan_id]] = i['instanceId']
 	# 以两个模型中的共有IP 为基准来创立关系
 	common_ips = list(set(ipmi_instances_dict) & set(host_instances_dict))
 	# 输出 IPMI - HOST 的差集IP
@@ -157,7 +158,8 @@ if __name__ == '__main__':
 			LEFT_OBJECT_ID_IPMI, RIGHT_OBJECT_ID_HOST))
 		print("\n{}".format(in_ipmi_notin_host))
 
-	print("\nStart to create relations.........")
+	print("\n----------------------------------------------")
+	print("Start to create relations.........")
 	for ipmi in ipmi_instances_list:
 		ipmi_ip = ipmi[IPMI_DaiWai_IP_ZiDuan_id]
 		ipmi_host = ipmi.get(RIGHT_OBJECT_ID_HOST)
@@ -166,19 +168,19 @@ if __name__ == '__main__':
 			if not ipmi_host:
 				check_success = handle_relation('post', ipmi['instanceId'], host_instances_dict[ipmi_ip])
 				if check_success:
-					print("Create the relation of {} success.".format(ipmi_ip))
+					print("Create the relation of iLo_ip {} success.".format(ipmi_ip))
 				else:
-					print("Create the relation of \033[1;31m Failed \033[0m!.".format(ipmi_ip))
+					print("Create the relation of \033[1;31m iLo_ip {} Failed \033[0m!.".format(ipmi_ip))
 
 			# IPMI['HOST'] 已存在，检查关系是否正确。如果正确匹配，pass，否则更新关系。
 			else:
 				if ipmi_host[0].get(HOST_DaiWai_IP_ZiDuan_id) == ipmi_ip:
 					pass
 				else:
-					# 必须写两次，put 会先删除已有实例。第二次是创建。
+					# 必须写两次，put 第一次会先删除已有实例。第二次是创建。
 					check_success = handle_relation('put', ipmi['instanceId'], host_instances_dict[ipmi_ip])
 					check_success = handle_relation('put', ipmi['instanceId'], host_instances_dict[ipmi_ip])
 					if check_success:
-						print("Update the  relation of {} success.".format(ipmi_ip))
+						print("Update the  relation of iLo_ip {} success.".format(ipmi_ip))
 					else:
-						print("Update the relation of \033[1;31m Failed \033[0m!.".format(ipmi_ip))
+						print("Update the relation of \033[1;31m iLo_ip {} Failed \033[0m!.".format(ipmi_ip))
